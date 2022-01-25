@@ -20,10 +20,8 @@ public class IDGenerator {
 	}
 
 	public static int generate(BaseEntity entity) {
-
 		int id = idMap.get(entity.getClass());
 		idMap.put(entity.getClass(), id + 1);
-
 		return id;
 	}
 
@@ -36,5 +34,4 @@ public class IDGenerator {
 		idMap.put(Wallet.class, 1);
 		idMap.put(Campaign.class, 1);
 	}
-
 }
