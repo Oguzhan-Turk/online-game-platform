@@ -1,13 +1,16 @@
-package com.oguzhanturk.entity;
+package com.oguzhanturk.entity.user;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import com.oguzhanturk.entity.BaseEntity;
+import com.oguzhanturk.entity.game.Game;
 
 public class User extends BaseEntity {
 
 	private String fullName;
 	private String userName;
-	private byte[] profilePicture;
+	private String profilePicture;
 	private String email;
 	private String password;
 	private Wallet wallet;
@@ -30,11 +33,11 @@ public class User extends BaseEntity {
 		this.userName = userName;
 	}
 
-	public byte[] getProfilePicture() {
+	public String getProfilePicture() {
 		return profilePicture;
 	}
 
-	public void setProfilePicture(byte[] profilePicture) {
+	public void setProfilePicture(String profilePicture) {
 		this.profilePicture = profilePicture;
 	}
 
@@ -85,7 +88,7 @@ public class User extends BaseEntity {
 	public static class UserBuilder {
 		private String fullName;
 		private String userName;
-		private byte[] profilePicture;
+		private String profilePicture;
 		private String email;
 		private String password;
 		private Wallet wallet;
@@ -100,7 +103,7 @@ public class User extends BaseEntity {
 			return this;
 		}
 
-		public UserBuilder setProfilePicture(byte[] profilePicture) {
+		public UserBuilder setProfilePicture(String profilePicture) {
 			this.profilePicture = profilePicture;
 			return this;
 		}
@@ -124,6 +127,11 @@ public class User extends BaseEntity {
 			return new User(this);
 		}
 
+	}
+
+	@Override
+	public BaseEntity getInstance() {
+		return this;
 	}
 
 }

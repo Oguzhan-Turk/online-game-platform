@@ -1,27 +1,30 @@
-package com.oguzhanturk.entity;
+package com.oguzhanturk.entity.user;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.oguzhanturk.entity.BaseEntity;
+
 public class Wallet extends BaseEntity {
 
-	private User owned;
+	private User owner;
 	private BigDecimal balance;
 	private Set<CreditCard> registeredCards;
 
-	public Wallet(User owned) {
+	public Wallet(User owner) {
 		super();
-		this.owned = owned;
+		this.owner = owner;
+		this.balance = BigDecimal.ZERO;
 		this.registeredCards = new HashSet<CreditCard>();
 	}
 
 	public User getOwned() {
-		return owned;
+		return owner;
 	}
 
-	public void setOwned(User owned) {
-		this.owned = owned;
+	public void setOwned(User owner) {
+		this.owner = owner;
 	}
 
 	public BigDecimal getBalance() {
@@ -34,6 +37,11 @@ public class Wallet extends BaseEntity {
 
 	public Set<CreditCard> getRegisteredCards() {
 		return new HashSet<CreditCard>(registeredCards);
+	}
+
+	@Override
+	public BaseEntity getInstance() {
+		return this;
 	}
 
 }
