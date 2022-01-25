@@ -54,8 +54,4 @@ public class CreditCard extends BaseEntity {
 		this.password = password;
 	}
 	
-	@Override
-	public BaseEntity getInstance() {
-		return this;
-	}
 }

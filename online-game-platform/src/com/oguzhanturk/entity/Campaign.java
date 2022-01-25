@@ -31,9 +31,5 @@ public class Campaign extends BaseEntity {
 		this.discountPercentage = discountPercentage;
 	}
 
-	@Override
-	public BaseEntity getInstance() {
-		return this;
-	}
 
 }

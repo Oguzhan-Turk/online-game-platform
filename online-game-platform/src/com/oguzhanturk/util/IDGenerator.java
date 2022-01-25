@@ -19,9 +19,15 @@ public class IDGenerator {
 		init();
 	}
 
-	public static int generate(BaseEntity entity) {
-		int id = idMap.get(entity.getClass());
-		idMap.put(entity.getClass(), id + 1);
+//	public static int generate(BaseEntity entity) {
+//		int id = idMap.get(entity.getClass());
+//		idMap.put(entity.getClass(), id + 1);
+//		return id;
+//	}
+
+	public static int generate(Class clazz) {
+		int id = idMap.get(clazz);
+		idMap.put(clazz, id + 1);
 		return id;
 	}
 

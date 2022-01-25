@@ -32,9 +32,5 @@ public class Category extends BaseEntity {
 		return new HashSet<Game>();
 	}
 
-	@Override
-	public BaseEntity getInstance() {
-		return this;
-	}
 
 }

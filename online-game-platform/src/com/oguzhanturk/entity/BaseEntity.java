@@ -4,12 +4,16 @@ import com.oguzhanturk.util.IDGenerator;
 
 public abstract class BaseEntity implements Entity {
 
-	private int id = IDGenerator.generate(getInstance());
+	private int id;
+//	IDGenerator.generate(getInstance());
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public int getId() {
 		return id;
 	}
 
-	public abstract BaseEntity getInstance();
 
 }

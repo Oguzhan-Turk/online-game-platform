@@ -59,9 +59,5 @@ public class Game extends BaseEntity {
 		return reviews;
 	}
 
-	@Override
-	public BaseEntity getInstance() {
-		return this;
-	}
 
 }

@@ -129,9 +129,4 @@ public class User extends BaseEntity {
 
 	}
 
-	@Override
-	public BaseEntity getInstance() {
-		return this;
-	}
-
 }

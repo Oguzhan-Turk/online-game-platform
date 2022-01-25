@@ -39,9 +39,5 @@ public class Wallet extends BaseEntity {
 		return new HashSet<CreditCard>(registeredCards);
 	}
 
-	@Override
-	public BaseEntity getInstance() {
-		return this;
-	}
 
 }
