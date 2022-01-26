@@ -5,7 +5,6 @@ import java.util.List;
 
 import static com.oguzhanturk.db.OnMemoryDatabase.USERS;
 import com.oguzhanturk.entity.user.User;
-import com.oguzhanturk.util.IDGenerator;
 import com.oguzhanturk.util.Utils;
 
 public class UserRepository implements CrudRepository<User> {
@@ -13,8 +12,9 @@ public class UserRepository implements CrudRepository<User> {
 	@Override
 	public User save(User user) {
 
-		Utils.generateIdFor(user);
-		return USERS.put(user.getId(), user);
+//		Utils.generateIdFor(user);
+//		USERS.put(user.getId(), user);
+		return USERS.put(Utils.generateIdFor(user), user);
 	}
 
 	@Override
@@ -24,18 +24,18 @@ public class UserRepository implements CrudRepository<User> {
 	}
 
 	@Override
-	public boolean update(int idOfUserWillBeUpdated, User user) {
+	public boolean update(int idOfUserWillBeUpdated, User newUser) {
 //		User userWillBeUpdate = USERS.get(idOfUserWillBeUpdated);
 //		if (userWillBeUpdate == null)
 //			return false;
 //
-//		updateUser(userWillBeUpdate, user);
+//		updateUser(userWillBeUpdate, newUser);
 //		return true;
-		if (user.getId() != 0)
+		if (newUser.getId() != 0)
 			return false;
 
-		user.setId(idOfUserWillBeUpdated);
-		return USERS.replace(idOfUserWillBeUpdated, findById(idOfUserWillBeUpdated), user);
+		newUser.setId(idOfUserWillBeUpdated);
+		return USERS.replace(idOfUserWillBeUpdated, findById(idOfUserWillBeUpdated), newUser);
 
 	}
 //
@@ -52,7 +52,7 @@ public class UserRepository implements CrudRepository<User> {
 
 	@Override
 	public User delete(int id) {
-		return USERS.remove(id);
+		return USERS.remove(id); //What if we don't have any entity with this identity?	Should we return null?
 	}
 
 	@Override

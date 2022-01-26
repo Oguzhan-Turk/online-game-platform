@@ -8,7 +8,7 @@ public interface CrudRepository<T> {
 
 	T findById(int id);
 
-	boolean update(int id, T t);
+	boolean update(int idOfEntityWillBeUpdated, T newT);
 
 	T delete(int id);
 
