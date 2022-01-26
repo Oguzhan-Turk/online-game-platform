@@ -14,7 +14,8 @@ public class UserRepository implements CrudRepository<User> {
 
 //		Utils.generateIdFor(user);
 //		USERS.put(user.getId(), user);
-		return USERS.put(Utils.generateIdFor(user), user);
+		USERS.put(Utils.generateIdFor(user), user);
+		return findById(user.getId());
 	}
 
 	@Override
@@ -52,7 +53,7 @@ public class UserRepository implements CrudRepository<User> {
 
 	@Override
 	public User delete(int id) {
-		return USERS.remove(id); //What if we don't have any entity with this identity?	Should we return null?
+		return USERS.remove(id); // What if we don't have any entity with this identity? Should we return null?
 	}
 
 	@Override

@@ -11,7 +11,8 @@ public class WalletRepository implements CrudRepository<Wallet> {
 
 	@Override
 	public Wallet save(Wallet wallet) {
-		return WALLETS.put(Utils.generateIdFor(wallet), wallet);
+		WALLETS.put(Utils.generateIdFor(wallet), wallet);
+		return findById(wallet.getId());
 	}
 
 	@Override

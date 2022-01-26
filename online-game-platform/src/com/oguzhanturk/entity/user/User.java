@@ -1,5 +1,6 @@
 package com.oguzhanturk.entity.user;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,7 +9,10 @@ import com.oguzhanturk.entity.game.Game;
 
 public class User extends BaseEntity {
 
-	private String fullName;
+	private String tCKN;
+	private String name;
+	private String surname;
+	private LocalDate dateOfBirth;
 	private String userName;
 	private String profilePicture;
 	private String email;
@@ -17,12 +21,50 @@ public class User extends BaseEntity {
 	private Set<Game> games;
 	private Set<User> friendsList;
 
-	public String getFullName() {
-		return fullName;
+	private User(UserBuilder userBuilder) {
+		tCKN = userBuilder.tCKN;
+		name = userBuilder.name;
+		surname = userBuilder.surname;
+		dateOfBirth = userBuilder.dateOfBirth;
+		userName = userBuilder.userName;
+		profilePicture = userBuilder.profilePicture;
+		email = userBuilder.email;
+		password = userBuilder.password;
+		wallet = userBuilder.wallet;
+		games = new HashSet<Game>();
+		friendsList = new HashSet<User>();
 	}
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+	public String gettCKN() {
+		return tCKN;
+	}
+
+	public void settCKN(String tCKN) {
+		this.tCKN = tCKN;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public LocalDate getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	public String getUserName() {
@@ -73,28 +115,35 @@ public class User extends BaseEntity {
 		return new HashSet<User>(friendsList);
 	}
 
-	private User(UserBuilder userBuilder) {
-		fullName = userBuilder.fullName;
-		userName = userBuilder.userName;
-		profilePicture = userBuilder.profilePicture;
-		email = userBuilder.email;
-		password = userBuilder.password;
-		wallet = userBuilder.wallet;
-		games = new HashSet<Game>();
-		friendsList = new HashSet<User>();
-	}
-
 	// builder pattern
 	public static class UserBuilder {
-		private String fullName;
+		private String tCKN = "-1";
+		private String name;
+		private String surname;
+		private LocalDate dateOfBirth = LocalDate.of(1, 1, 1);
 		private String userName;
 		private String profilePicture;
 		private String email;
 		private String password;
 		private Wallet wallet;
 
-		public UserBuilder setFullName(String fullName) {
-			this.fullName = fullName;
+		public UserBuilder setTCKN(String tCKN) {
+			this.tCKN = tCKN;
+			return this;
+		}
+
+		public UserBuilder setName(String name) {
+			this.name = name;
+			return this;
+		}
+
+		public UserBuilder setSurname(String surname) {
+			this.surname = surname;
+			return this;
+		}
+
+		public UserBuilder setDateOfBirth(LocalDate dateOfBirth) {
+			this.dateOfBirth = dateOfBirth;
 			return this;
 		}
 
