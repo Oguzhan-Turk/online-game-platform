@@ -17,10 +17,10 @@ public class Driver {
 
 	public static void main(String[] args) throws RemoteException, InterruptedException {
 
-		User user1 = new UserBuilder().setEmail("oguzhan@test").setName("Oğuzhan").setSurname("Türk")
+		User user1 = User.builder().setEmail("oguzhan@test").setName("Oğuzhan").setSurname("Türk")
 				.setTCKN("33718242370").setDateOfBirth(LocalDate.of(1996, 8, 27)).build();
-		User user2 = new UserBuilder().setEmail("ikram@test").setName("İkramDagcı").setPassword("123").build();
-		User user3 = new UserBuilder().setEmail("ali@test").setName("AliTurk").setPassword("321").build();
+		User user2 = User.builder().setEmail("ikram@test").setName("İkramDagcı").setPassword("123").build();
+		User user3 = User.builder().setEmail("ali@test").setName("AliTurk").setPassword("321").build();
 //		User user4 = new UserBuilder().setEmail("mustafa@test").setName("MustafaTurk").setPassword("258").build();
 
 		Wallet wallet = new Wallet(user1);
