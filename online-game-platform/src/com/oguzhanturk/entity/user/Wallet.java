@@ -39,5 +39,12 @@ public class Wallet extends BaseEntity {
 		return new HashSet<CreditCard>(registeredCards);
 	}
 
+	public boolean registerCard(CreditCard creditCard) {
+		return registeredCards.add(creditCard);
+	}
+
+	public boolean removeCard(CreditCard creditCard) {
+		return registeredCards.remove(creditCard);
+	}
 
 }

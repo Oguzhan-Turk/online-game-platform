@@ -11,7 +11,7 @@ public class Game extends BaseEntity {
 	private String name;
 	private BigDecimal price;
 	private String description;
-	private Set<String> pictures;
+	private Set<String> pictureUrls;
 	private Set<Review> reviews;
 
 	public Game() {
@@ -23,7 +23,7 @@ public class Game extends BaseEntity {
 		this.name = name;
 		this.price = price;
 		this.description = description;
-		this.pictures = new HashSet<String>();
+		this.pictureUrls = new HashSet<String>();
 		this.reviews = new HashSet<Review>();
 	}
 
@@ -51,13 +51,28 @@ public class Game extends BaseEntity {
 		this.description = description;
 	}
 
-	public Set<String> getPictures() {
-		return pictures;
+	public Set<String> getPictureUrls() {
+		return pictureUrls;
 	}
 
 	public Set<Review> getReviews() {
 		return reviews;
 	}
 
+	public boolean addPicture(String pictureUrl) {
+		return pictureUrls.add(pictureUrl);
+	}
+
+	public boolean removePicture(String pictureUrl) {
+		return pictureUrls.remove(pictureUrl);
+	}
+
+	public boolean addReview(Review review) {
+		return reviews.add(review);
+	}
+
+	public boolean removeReview(Review review) {
+		return reviews.remove(review);
+	}
 
 }

@@ -32,5 +32,12 @@ public class Category extends BaseEntity {
 		return new HashSet<Game>();
 	}
 
+	public boolean addGame(Game game) {
+		return games.add(game);
+	}
+
+	public boolean removeGame(Game game) {
+		return games.add(game);
+	}
 
 }
