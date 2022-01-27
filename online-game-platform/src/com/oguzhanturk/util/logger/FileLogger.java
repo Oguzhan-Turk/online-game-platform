@@ -14,6 +14,11 @@ public class FileLogger implements Logger {
 
 	public <T> FileLogger(Class clazz) {
 
+		File logDir = new File(LOG_FILE_LOCATION);
+		if (!logDir.exists()) {
+			logDir.mkdir();
+		}
+
 		String fullQualifiedName = clazz.getTypeName();
 		String[] path = fullQualifiedName.split("\\.");
 		String className = path[path.length - 1];
