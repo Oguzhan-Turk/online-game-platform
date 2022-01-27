@@ -3,6 +3,7 @@ package com.oguzhanturk.db;
 import java.util.HashMap;
 
 import com.oguzhanturk.entity.Campaign;
+import com.oguzhanturk.entity.Sale;
 import com.oguzhanturk.entity.game.Category;
 import com.oguzhanturk.entity.game.Game;
 import com.oguzhanturk.entity.game.Review;
@@ -19,5 +20,6 @@ public final class OnMemoryDatabase {
 	public static final HashMap<Integer, Category> CATEGORIES = new HashMap<Integer, Category>();
 	public static final HashMap<Integer, Game> GAMES = new HashMap<Integer, Game>();
 	public static final HashMap<Integer, Review> REVIEWS = new HashMap<Integer, Review>();
+	public static final HashMap<Integer, Sale> SALES = new HashMap<Integer, Sale>();
 
 }

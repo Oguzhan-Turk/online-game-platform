@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import com.oguzhanturk.entity.BaseEntity;
 import com.oguzhanturk.entity.Campaign;
+import com.oguzhanturk.entity.Sale;
 import com.oguzhanturk.entity.game.Category;
 import com.oguzhanturk.entity.game.Game;
 import com.oguzhanturk.entity.game.Review;
@@ -39,5 +40,6 @@ public class IDGenerator {
 		idMap.put(User.class, 1);
 		idMap.put(Wallet.class, 1);
 		idMap.put(Campaign.class, 1);
+		idMap.put(Sale.class, 1);
 	}
 }
