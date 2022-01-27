@@ -18,8 +18,11 @@ public class CampaignService {
 	}
 
 	public Campaign addCampaign(Campaign campaign) {
-		LOGGER.log("addCampaign -> " + campaign.getName() + " added");
-		return repository.save(campaign);
+		if (isValidCampaign(campaign)) {
+			LOGGER.log("addCampaign -> " + campaign.getName() + " added");
+			return repository.save(campaign);
+		}
+		return null;
 	}
 
 	public Campaign findCampaignById(int id) {
@@ -27,6 +30,9 @@ public class CampaignService {
 	}
 
 	public boolean updateCampaign(int id, Campaign newCampaign) {
+		if (!isValidCampaign(newCampaign)) {
+			return false;
+		}
 		Campaign campaignWillBeUpdated = findCampaignById(id);
 		boolean update = repository.update(id, newCampaign);
 		if (update) {
@@ -49,5 +55,9 @@ public class CampaignService {
 
 	public List<Campaign> findAll() {
 		return repository.findAll();
+	}
+
+	private boolean isValidCampaign(Campaign campaign) {
+		return campaign.getDiscountPercentage() < 100 && campaign.getDiscountPercentage() > 0;
 	}
 }
