@@ -1,13 +1,23 @@
 package com.oguzhanturk.main;
 
+import java.math.BigDecimal;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.concurrent.TimeUnit;
 
+import com.oguzhanturk.entity.Campaign;
+import com.oguzhanturk.entity.Sale;
+import com.oguzhanturk.entity.game.Game;
 import com.oguzhanturk.entity.user.User;
 import com.oguzhanturk.entity.user.User.UserBuilder;
+import com.oguzhanturk.repository.CampaignRepository;
+import com.oguzhanturk.repository.GameRepository;
+import com.oguzhanturk.repository.SaleRepository;
 import com.oguzhanturk.repository.UserRepository;
 import com.oguzhanturk.repository.WalletRepository;
+import com.oguzhanturk.service.CampaignService;
+import com.oguzhanturk.service.GameService;
+import com.oguzhanturk.service.SaleService;
 import com.oguzhanturk.service.UserService;
 import com.oguzhanturk.service.WalletService;
 
@@ -17,31 +27,33 @@ public class Driver {
 
 	public static void main(String[] args) throws RemoteException, InterruptedException {
 
-		User user1 = User.builder().setEmail("oguzhan@test").setName("Oğuzhan").setSurname("Türk")
-				.setTCKN("33718242370").setDateOfBirth(LocalDate.of(1996, 8, 27)).build();
-		User user2 = User.builder().setEmail("ikram@test").setName("İkramDagcı").setPassword("123").build();
-		User user3 = User.builder().setEmail("ali@test").setName("AliTurk").setPassword("321").build();
-//		User user4 = new UserBuilder().setEmail("mustafa@test").setName("MustafaTurk").setPassword("258").build();
-
-		Wallet wallet = new Wallet(user1);
-//		Wallet wallet1 = new Wallet(user2);
-//		Wallet wallet2 = new Wallet(user3);
-//		Wallet wallet3 = new Wallet(user2);
+		CampaignRepository campaignRepository = new CampaignRepository();
 
 		UserService userService = new UserService(new UserRepository());
 		WalletService walletService = new WalletService(new WalletRepository());
+		GameService gameService = new GameService(new GameRepository());
+		SaleService saleService = new SaleService(new SaleRepository(), campaignRepository);
+		CampaignService campaignService = new CampaignService(campaignRepository);
 
+		User user1 = User.builder().setEmail("oguzhan@test").setName("Oğuzhan").setSurname("Türk")
+				.setTCKN("33718242370").setDateOfBirth(LocalDate.of(1996, 8, 27)).build();
+//		User user2 = User.builder().setEmail("ikram@test").setName("İkramDagcı").setPassword("123").build();
+//		User user3 = User.builder().setEmail("ali@test").setName("AliTurk").setPassword("321").build();
+//		User user4 = new UserBuilder().setEmail("mustafa@test").setName("MustafaTurk").setPassword("258").build();
+
+		Wallet wallet = new Wallet(user1);
+		Campaign campaign = new Campaign("Summer Campaign", 20);
+		Game game = new Game("COD", BigDecimal.valueOf(150), "Nice War Game!!");
+
+		campaignService.addCampaign(campaign);
 		userService.addUser(user1);
-		userService.addUser(user2);
-		userService.addUser(user3);
-//		userService.updateUser(1, user4);
-//		userService.deleteUser(2);
+		wallet.setBalance(BigDecimal.valueOf(500.0));
 
 		walletService.addWallet(wallet);
-//		walletService.addWallet(wallet1);
-//		walletService.addWallet(wallet2);
-//		walletService.updateWallet(2, wallet3);
-//		walletService.deleteWallet(1);
+		user1.setWallet(wallet);
+		gameService.addGame(game);
+
+		Sale sale = saleService.sellGame(user1, game, campaign);
 
 		for (Wallet wallet0 : walletService.findAll()) {
 			System.out.println("Wallet id = " + wallet0.getId() + " Owner : " + wallet0.getOwned().getName());
