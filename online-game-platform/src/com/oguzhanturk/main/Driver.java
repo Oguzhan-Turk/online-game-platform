@@ -26,7 +26,7 @@ import com.oguzhanturk.entity.user.Wallet;;
 
 public class Driver {
 
-	public static void main(String[] args) throws RemoteException, InterruptedException {
+	public static void main(String[] args) {
 
 		CampaignRepository campaignRepository = new CampaignRepository();
 
