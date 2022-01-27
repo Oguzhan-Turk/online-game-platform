@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Objects;
 
 import com.oguzhanturk.domain.SellGame;
-import com.oguzhanturk.entity.Campaign;
-import com.oguzhanturk.entity.Sale;
 import com.oguzhanturk.entity.game.Game;
+import com.oguzhanturk.entity.sale.Campaign;
+import com.oguzhanturk.entity.sale.Sale;
 import com.oguzhanturk.entity.user.User;
 import com.oguzhanturk.repository.CampaignRepository;
 import com.oguzhanturk.repository.SaleRepository;

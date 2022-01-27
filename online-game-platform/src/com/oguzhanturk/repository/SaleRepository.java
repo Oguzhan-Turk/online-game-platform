@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.oguzhanturk.db.OnMemoryDatabase.SALES;
-import com.oguzhanturk.entity.Sale;
+
+import com.oguzhanturk.entity.sale.Sale;
 import com.oguzhanturk.util.Utils;
 
 public class SaleRepository implements CrudRepository<Sale> {

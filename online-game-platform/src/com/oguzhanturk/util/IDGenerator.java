@@ -3,11 +3,11 @@ package com.oguzhanturk.util;
 import java.util.HashMap;
 
 import com.oguzhanturk.entity.BaseEntity;
-import com.oguzhanturk.entity.Campaign;
-import com.oguzhanturk.entity.Sale;
 import com.oguzhanturk.entity.game.Category;
 import com.oguzhanturk.entity.game.Game;
 import com.oguzhanturk.entity.game.Review;
+import com.oguzhanturk.entity.sale.Campaign;
+import com.oguzhanturk.entity.sale.Sale;
 import com.oguzhanturk.entity.user.CreditCard;
 import com.oguzhanturk.entity.user.User;
 import com.oguzhanturk.entity.user.Wallet;

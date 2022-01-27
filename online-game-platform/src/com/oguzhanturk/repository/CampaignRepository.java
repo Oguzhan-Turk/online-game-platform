@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.oguzhanturk.db.OnMemoryDatabase.CAMPAIGNS;
-import com.oguzhanturk.entity.Campaign;
+
+import com.oguzhanturk.entity.sale.Campaign;
 import com.oguzhanturk.util.Utils;
 
 public class CampaignRepository implements CrudRepository<Campaign> {

@@ -1,8 +1,9 @@
-package com.oguzhanturk.entity;
+package com.oguzhanturk.entity.sale;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import com.oguzhanturk.entity.BaseEntity;
 import com.oguzhanturk.entity.game.Game;
 import com.oguzhanturk.entity.user.User;
 

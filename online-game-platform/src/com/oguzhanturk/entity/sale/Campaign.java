@@ -1,4 +1,6 @@
-package com.oguzhanturk.entity;
+package com.oguzhanturk.entity.sale;
+
+import com.oguzhanturk.entity.BaseEntity;
 
 public class Campaign extends BaseEntity {
 

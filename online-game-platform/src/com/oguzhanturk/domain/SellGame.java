@@ -3,9 +3,9 @@ package com.oguzhanturk.domain;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-import com.oguzhanturk.entity.Campaign;
-import com.oguzhanturk.entity.Sale;
 import com.oguzhanturk.entity.game.Game;
+import com.oguzhanturk.entity.sale.Campaign;
+import com.oguzhanturk.entity.sale.Sale;
 import com.oguzhanturk.entity.user.User;
 
 public class SellGame {

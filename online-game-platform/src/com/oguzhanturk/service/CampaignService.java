@@ -3,7 +3,7 @@ package com.oguzhanturk.service;
 import java.util.List;
 import java.util.Objects;
 
-import com.oguzhanturk.entity.Campaign;
+import com.oguzhanturk.entity.sale.Campaign;
 import com.oguzhanturk.repository.CampaignRepository;
 import com.oguzhanturk.util.logger.FileLogger;
 import com.oguzhanturk.util.logger.Logger;
