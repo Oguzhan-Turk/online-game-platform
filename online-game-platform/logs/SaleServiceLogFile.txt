@@ -1,0 +1,2 @@
+2022-01-27 19:39:16	addSale -> 0 added
+2022-01-27 19:39:16	sellGame -> User ID : 1 FullName : Oğuzhan Türk bought COD for $150
