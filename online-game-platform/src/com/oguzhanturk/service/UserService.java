@@ -20,9 +20,7 @@ public class UserService {
 	}
 
 	public User addUser(User user) {
-		repository.save(user);
-		new Thread(new TcknVerificationTask(user)).start();
-		LOGGER.log("addUser -> " + user.getId() + " added");
+		new Thread(new TcknVerificationTask(user, repository)).start();
 		return user;
 	}
 

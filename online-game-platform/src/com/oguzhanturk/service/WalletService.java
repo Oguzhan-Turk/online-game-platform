@@ -3,7 +3,9 @@ package com.oguzhanturk.service;
 import java.util.List;
 import java.util.Objects;
 
+import com.oguzhanturk.entity.user.User;
 import com.oguzhanturk.entity.user.Wallet;
+import com.oguzhanturk.repository.UserRepository;
 import com.oguzhanturk.repository.WalletRepository;
 import com.oguzhanturk.util.logger.FileLogger;
 import com.oguzhanturk.util.logger.Logger;
@@ -11,14 +13,23 @@ import com.oguzhanturk.util.logger.Logger;
 public class WalletService {
 
 	private final WalletRepository repository;
+	private final UserRepository userRepository;
 	private static final Logger LOGGER = new FileLogger(WalletService.class);
 
-	public WalletService(WalletRepository repository) {
+	public WalletService(WalletRepository repository, UserRepository userRepository) {
 		this.repository = repository;
+		this.userRepository = userRepository;
 	}
 
 	public Wallet addWallet(Wallet wallet) {
+
+		User owner = userRepository.findById(wallet.getOwned().getId());
+		if (Objects.isNull(owner)) {
+			System.out.println("SSS");
+			return null;
+		}
 		repository.save(wallet);
+		owner.setWallet(wallet);
 		LOGGER.log("addWallet -> Wallet with id = " + wallet.getId() + " added");
 		return wallet;
 	}
