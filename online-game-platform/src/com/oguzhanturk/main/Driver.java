@@ -26,22 +26,23 @@ import com.oguzhanturk.entity.user.Wallet;;
 
 public class Driver {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 
+		UserRepository userRepository = new UserRepository();
 		CampaignRepository campaignRepository = new CampaignRepository();
 
-		UserService userService = new UserService(new UserRepository());
-		WalletService walletService = new WalletService(new WalletRepository());
+		UserService userService = new UserService(userRepository);
+		WalletService walletService = new WalletService(new WalletRepository(), userRepository);
 		GameService gameService = new GameService(new GameRepository());
 		SaleService saleService = new SaleService(new SaleRepository(), campaignRepository);
 		CampaignService campaignService = new CampaignService(campaignRepository);
 
-		User user = User.builder().setEmail("oguzhan@test").setName("Oğuzhan").setSurname("Türk").setTCKN("11111111111")
+		User user = User.builder().setEmail("oguzhan@test").setName("Oğuzhan").setSurname("Türk").setTCKN("33718242370")
 				.setDateOfBirth(LocalDate.of(1996, 8, 27)).build();
 
 		Wallet wallet = new Wallet(user);
 		wallet.setBalance(BigDecimal.valueOf(500.0));
-		user.setWallet(wallet);
+//		user.setWallet(wallet);
 
 		Campaign campaign = new Campaign("Summer Campaign", 20);
 
@@ -49,6 +50,7 @@ public class Driver {
 
 		campaignService.addCampaign(campaign);
 		userService.addUser(user);
+		TimeUnit.SECONDS.sleep(2);
 		walletService.addWallet(wallet);
 		gameService.addGame(game);
 
