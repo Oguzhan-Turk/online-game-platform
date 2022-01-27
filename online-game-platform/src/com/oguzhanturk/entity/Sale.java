@@ -13,24 +13,16 @@ public class Sale extends BaseEntity {
 	private LocalDate purchaseDate;
 	private BigDecimal paymentTotal;
 	private Campaign campaign;
-//	private BigDecimal discountAmount = BigDecimal.valueOf((100 - campaign.getDiscountPercentage()) / 100);
 
-	public Sale(User buyer, Game purchasedGame, LocalDate purchaseDate) {
-		super();
+	public Sale(User buyer, Game purchasedGame) {
 		this.buyer = buyer;
 		this.purchasedGame = purchasedGame;
-		this.purchaseDate = purchaseDate;
-//		this.paymentTotal = purchasedGame.getPrice();
+		purchaseDate = LocalDate.now();
 	}
 
-	public Sale(User buyer, Game purchasedGame, LocalDate purchaseDate, Campaign campaign) {
-		super();
-		this.buyer = buyer;
-		this.purchasedGame = purchasedGame;
-		this.purchaseDate = purchaseDate;
+	public Sale(User buyer, Game purchasedGame, Campaign campaign) {
+		this(buyer, purchasedGame);
 		this.campaign = campaign;
-//		this.paymentTotal = purchasedGame.getPrice().multiply(discountAmount);
-
 	}
 
 	public User getBuyer() {

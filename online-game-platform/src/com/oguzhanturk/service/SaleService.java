@@ -3,17 +3,24 @@ package com.oguzhanturk.service;
 import java.util.List;
 import java.util.Objects;
 
+import com.oguzhanturk.domain.SellGame;
+import com.oguzhanturk.entity.Campaign;
 import com.oguzhanturk.entity.Sale;
+import com.oguzhanturk.entity.game.Game;
+import com.oguzhanturk.entity.user.User;
+import com.oguzhanturk.repository.CampaignRepository;
 import com.oguzhanturk.repository.SaleRepository;
 import com.oguzhanturk.util.logger.FileLogger;
 import com.oguzhanturk.util.logger.Logger;
 
 public class SaleService {
 	private final SaleRepository repository;
+	private final CampaignRepository campaignRepository;
 	private static final Logger LOGGER = new FileLogger(SaleService.class);
 
-	public SaleService(SaleRepository repository) {
+	public SaleService(SaleRepository repository, CampaignRepository campaignRepository) {
 		this.repository = repository;
+		this.campaignRepository = campaignRepository;
 	}
 
 	public Sale addSale(Sale sale) {
@@ -48,6 +55,28 @@ public class SaleService {
 
 	public List<Sale> findAll() {
 		return repository.findAll();
+	}
+
+	public Sale sellGame(User buyer, Game game) {
+
+		return sellGame(buyer, game, null);
+
+	}
+
+	public Sale sellGame(User buyer, Game game, Campaign campaign) {
+
+		Sale sale = new SellGame(buyer, game, campaignRepository.findById(campaign.getId())).sell();
+		if (Objects.nonNull(sale)) {
+			addSale(sale);
+			LOGGER.log("sellGame -> User ID : " + sale.getBuyer().getId() + " FullName : " + sale.getBuyer().getName()
+					+ " " + sale.getBuyer().getSurname() + " bought " + game.getName() + " for $"
+					+ sale.getPaymentTotal());
+		} else {
+			LOGGER.log(
+					"sellGame -> Failed purchase (User ID : " + buyer.getId() + " Game Name : " + game.getName() + ")");
+		}
+		return sale;
+
 	}
 
 }
