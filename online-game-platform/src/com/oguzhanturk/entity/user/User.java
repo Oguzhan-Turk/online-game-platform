@@ -115,6 +115,22 @@ public class User extends BaseEntity {
 		return new HashSet<User>(friendsList);
 	}
 
+	public boolean addGame(Game game) {
+		return games.add(game);
+	}
+
+	public boolean removeGame(Game game) {
+		return games.remove(game);
+	}
+
+	public boolean addFriend(User friend) {
+		return friendsList.add(friend);
+	}
+
+	public boolean removeFriend(User friend) {
+		return friendsList.remove(friend);
+	}
+
 	// builder pattern
 	public static class UserBuilder {
 		private String tCKN = "-1";
@@ -126,6 +142,9 @@ public class User extends BaseEntity {
 		private String email;
 		private String password;
 		private Wallet wallet;
+
+		private UserBuilder() {
+		}
 
 		public UserBuilder setTCKN(String tCKN) {
 			this.tCKN = tCKN;
@@ -176,6 +195,10 @@ public class User extends BaseEntity {
 			return new User(this);
 		}
 
+	}
+
+	public static UserBuilder builder() {
+		return new UserBuilder();
 	}
 
 }
