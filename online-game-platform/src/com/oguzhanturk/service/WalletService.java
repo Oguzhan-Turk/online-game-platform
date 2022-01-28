@@ -3,6 +3,7 @@ package com.oguzhanturk.service;
 import java.util.List;
 import java.util.Objects;
 
+import com.oguzhanturk.domain.exception.UserNotFoundException;
 import com.oguzhanturk.entity.user.User;
 import com.oguzhanturk.entity.user.Wallet;
 import com.oguzhanturk.repository.UserRepository;
@@ -25,8 +26,13 @@ public class WalletService {
 
 		User owner = userRepository.findById(wallet.getOwned().getId());
 		if (Objects.isNull(owner)) {
-			System.out.println("SSS");
-			return null;
+			int tryCount = 3;
+			while (tryCount-- > 0) {
+				owner = userRepository.findById(wallet.getOwned().getId());
+			}
+			if (Objects.isNull(owner)) {
+				throw new UserNotFoundException();
+			}
 		}
 		repository.save(wallet);
 		owner.setWallet(wallet);
