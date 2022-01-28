@@ -37,7 +37,7 @@ public class Driver {
 		SaleService saleService = new SaleService(new SaleRepository(), campaignRepository);
 		CampaignService campaignService = new CampaignService(campaignRepository);
 
-		User user = User.builder().setEmail("oguzhan@test").setName("Oğuzhan").setSurname("Türk").setTCKN("33718242370")
+		User user = User.builder().setEmail("oguzhan@test").setName("Oğuzhan").setSurname("Türk").setTCKN("11111111111")
 				.setDateOfBirth(LocalDate.of(1996, 8, 27)).build();
 
 		Wallet wallet = new Wallet(user);
