@@ -2,6 +2,8 @@ package com.oguzhanturk.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static com.oguzhanturk.db.OnMemoryDatabase.USERS;
 import com.oguzhanturk.entity.user.User;
@@ -20,6 +22,15 @@ public class UserRepository implements CrudRepository<User> {
 	public User findById(int id) {
 
 		return USERS.get(id);
+	}
+
+	public User findByTckn(String tCKN) {
+		List<User> usersWithTckn = USERS.values().stream().filter(user -> user.gettCKN().equals(tCKN))
+				.collect(Collectors.toList());
+		if (usersWithTckn.size() == 0) {
+			return null;
+		}
+		return usersWithTckn.get(0);
 	}
 
 	@Override

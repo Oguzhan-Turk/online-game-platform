@@ -1,9 +1,11 @@
 package com.oguzhanturk.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import com.oguzhanturk.domain.exception.UserNotFoundException;
+import com.oguzhanturk.entity.game.Game;
 import com.oguzhanturk.entity.user.User;
 import com.oguzhanturk.entity.user.Wallet;
 import com.oguzhanturk.repository.UserRepository;
@@ -22,7 +24,7 @@ public class WalletService {
 		this.userRepository = userRepository;
 	}
 
-	public Wallet addWallet(Wallet wallet) {
+	public Wallet addWallet(Wallet wallet) throws UserNotFoundException {
 
 		User owner = userRepository.findById(wallet.getOwned().getId());
 		if (Objects.isNull(owner)) {
@@ -68,4 +70,5 @@ public class WalletService {
 	public List<Wallet> findAll() {
 		return repository.findAll();
 	}
+
 }

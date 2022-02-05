@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.concurrent.TimeUnit;
 
+import com.oguzhanturk.domain.exception.UserNotFoundException;
 import com.oguzhanturk.entity.game.Game;
 import com.oguzhanturk.entity.sale.Campaign;
 import com.oguzhanturk.entity.sale.Sale;
@@ -30,14 +31,15 @@ public class Driver {
 
 		UserRepository userRepository = new UserRepository();
 		CampaignRepository campaignRepository = new CampaignRepository();
+		GameRepository gameRepository = new GameRepository();
 
-		UserService userService = new UserService(userRepository);
+		UserService userService = new UserService(userRepository, gameRepository);
 		WalletService walletService = new WalletService(new WalletRepository(), userRepository);
-		GameService gameService = new GameService(new GameRepository());
+		GameService gameService = new GameService(gameRepository);
 		SaleService saleService = new SaleService(new SaleRepository(), campaignRepository);
 		CampaignService campaignService = new CampaignService(campaignRepository);
 
-		User user = User.builder().setEmail("oguzhan@test").setName("Oğuzhan").setSurname("Türk").setTCKN("11111111111")
+		User user = User.builder().setEmail("oguzhan@test").setName("Oğuzhan").setSurname("Türk").setTCKN("33718242370")
 				.setDateOfBirth(LocalDate.of(1996, 8, 27)).build();
 
 		Wallet wallet = new Wallet(user);
@@ -50,8 +52,18 @@ public class Driver {
 
 		campaignService.addCampaign(campaign);
 		userService.addUser(user);
-		TimeUnit.SECONDS.sleep(2);
-		walletService.addWallet(wallet);
+
+		try {
+			walletService.addWallet(wallet);
+		} catch (UserNotFoundException e) {
+			TimeUnit.SECONDS.sleep(2);
+			try {
+				walletService.addWallet(wallet);
+			} catch (UserNotFoundException e1) {
+				e1.printStackTrace();
+			}
+		}
+
 		gameService.addGame(game);
 
 		Sale sale = saleService.sellGame(user, game, campaign);

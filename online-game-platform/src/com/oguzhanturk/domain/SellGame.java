@@ -20,6 +20,11 @@ public class SellGame {
 		this.sale = new Sale(buyer, game, campaign);
 	}
 
+	/**
+	 * Performs the sale of specified Game to the specified User.
+	 * 
+	 * @return Sale object if sale is complete otherwise null.
+	 */
 	public Sale sell() {
 
 		sale.setPaymentTotal(calculatePaymentTotal());
@@ -29,7 +34,6 @@ public class SellGame {
 		sale.getBuyer().addGame(sale.getPurchasedGame());
 		sale.getBuyer().getWallet()
 				.setBalance(sale.getBuyer().getWallet().getBalance().subtract(sale.getPaymentTotal()));
-
 		return sale;
 
 	}

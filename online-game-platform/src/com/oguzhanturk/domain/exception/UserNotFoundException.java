@@ -1,6 +1,6 @@
 package com.oguzhanturk.domain.exception;
 
-public class UserNotFoundException extends RuntimeException {
+public class UserNotFoundException extends Exception {
 
 	public UserNotFoundException() {
 		super("Please check user!");
