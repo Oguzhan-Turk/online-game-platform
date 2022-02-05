@@ -21,6 +21,8 @@ public class SellGame {
 	}
 
 	public Sale sell() {
+
+		sale.setPaymentTotal(calculatePaymentTotal());
 		if (!checkUserBalance()) {
 			return null;
 		}
@@ -35,11 +37,18 @@ public class SellGame {
 	private boolean checkUserBalance() {
 		BigDecimal userBalance = sale.getBuyer().getWallet().getBalance();
 		sale.setPaymentTotal(sale.getPurchasedGame().getPrice());
-		if (Objects.nonNull(sale.getCampaign())) {
-			sale.setPaymentTotal(applyDiscount());
-		}
 
 		return userBalance.compareTo(sale.getPaymentTotal()) >= 0;
+
+	}
+
+	private BigDecimal calculatePaymentTotal() {
+
+		BigDecimal calculatedPaymentTotal = sale.getPaymentTotal();
+		if (Objects.nonNull(sale.getCampaign())) {
+			calculatedPaymentTotal = applyDiscount();
+		}
+		return calculatedPaymentTotal;
 	}
 
 	private BigDecimal applyDiscount() {
