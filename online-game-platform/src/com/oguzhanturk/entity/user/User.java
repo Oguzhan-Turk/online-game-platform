@@ -2,6 +2,7 @@ package com.oguzhanturk.entity.user;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import com.oguzhanturk.entity.BaseEntity;
@@ -199,6 +200,23 @@ public class User extends BaseEntity {
 
 	public static UserBuilder builder() {
 		return new UserBuilder();
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(email, tCKN);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return Objects.equals(email, other.email) && Objects.equals(tCKN, other.tCKN);
 	}
 
 }
